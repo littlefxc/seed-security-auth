@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>seed-security-app</artifactId>
+    <artifactId>seed-security-examples</artifactId>
 
 
 </project>

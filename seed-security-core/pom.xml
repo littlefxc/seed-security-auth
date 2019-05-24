@@ -6,7 +6,6 @@
         <artifactId>seed-security-auth</artifactId>
         <groupId>com.fengxuechao.seed</groupId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../seed-security</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
