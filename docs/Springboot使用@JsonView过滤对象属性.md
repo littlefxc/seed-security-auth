@@ -159,7 +159,6 @@ public class UserController {
 
     @GetMapping
     @JsonView(User.UserSimpleView.class)
-//    @ApiOperation(value = "用户查询服务")
     public List<User> query(UserQueryCondition condition) {
         System.out.println(ReflectionToStringBuilder.toString(condition, ToStringStyle.MULTI_LINE_STYLE));
 
@@ -191,10 +190,51 @@ public class UserController {
 ## 测试
 
 ```http request
-GET http://localhost:8080/user/user1
+GET http://localhost:8080/user
 
-{}
+HTTP/1.1 200 
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Wed, 26 Jun 2019 00:41:03 GMT
+
+[
+  {
+    "id": null,
+    "username": null,
+    "birthday": null
+  },
+  {
+    "id": null,
+    "username": null,
+    "birthday": null
+  },
+  {
+    "id": null,
+    "username": null,
+    "birthday": null
+  }
+]
 ```
+
+返回结果中没有密码属性
+
+```http request
+GET http://localhost:8080/user/1
+
+HTTP/1.1 200 
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Wed, 26 Jun 2019 00:41:56 GMT
+
+{
+  "id": "1",
+  "username": "tom",
+  "password": "tom",
+  "birthday": null
+}
+```
+
+返回结果中包含了密码字段。
 
 ## 总结
 
