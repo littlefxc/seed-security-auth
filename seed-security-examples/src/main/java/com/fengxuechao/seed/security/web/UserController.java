@@ -5,10 +5,7 @@ import com.fengxuechao.seed.security.dto.User;
 import com.fengxuechao.seed.security.dto.UserQueryCondition;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +49,12 @@ public class UserController {
         user.setId(id);
         user.setUsername("tom");
         user.setPassword("tom");
+        return user;
+    }
+
+    @PostMapping
+    public User createUser(@RequestBody User user) {
+        user.setId("1");
         return user;
     }
 }
