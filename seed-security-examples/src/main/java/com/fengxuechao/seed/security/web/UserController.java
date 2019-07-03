@@ -5,6 +5,8 @@ import com.fengxuechao.seed.security.dto.User;
 import com.fengxuechao.seed.security.dto.UserQueryCondition;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -24,10 +26,6 @@ public class UserController {
 //    @ApiOperation(value = "用户查询服务")
     public List<User> query(UserQueryCondition condition) {
         System.out.println(ReflectionToStringBuilder.toString(condition, ToStringStyle.MULTI_LINE_STYLE));
-
-//        System.out.println(pageable.getPageSize());
-//        System.out.println(pageable.getPageNumber());
-//        System.out.println(pageable.getSort());
 
         List<User> users = new ArrayList<>();
         users.add(new User());
@@ -53,8 +51,12 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
+    public User createUser(@Validated @RequestBody User user, BindingResult errors) {
+        if (errors.hasErrors()) {
+            errors.getAllErrors().forEach(System.out::println);
+        }
         user.setId("1");
+        System.out.println(ReflectionToStringBuilder.toString(user, ToStringStyle.MULTI_LINE_STYLE));
         return user;
     }
 }

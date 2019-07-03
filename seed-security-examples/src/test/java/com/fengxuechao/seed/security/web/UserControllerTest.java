@@ -11,6 +11,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.Date;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -73,12 +75,15 @@ public class UserControllerTest {
 
     @Test
     public void whenCreateSuccess() throws Exception {
-        String content = "{\"username\":\"tom\",\"password\":null}";
+        // 前台传时间戳，后台框架自己会转换自己能处理的格式
+        Date date = new Date();
+        String content = "{\"username\":\"tom\",\"password\":null,\"birthday\":"+date.getTime()+"}";
         mockMvc.perform(post("/user")
                 .content(content)
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value("1"));
+                .andExpect(jsonPath("$.id").value("1"))
+                .andDo(print());
     }
 
 }

@@ -8,8 +8,15 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>seed-security-app</artifactId>
+    <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.fengxuechao.seed</groupId>
+            <artifactId>seed-security-core</artifactId>
+            <version>${seed.security.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>
