@@ -1,6 +1,7 @@
 package com.fengxuechao.seed.security.dto;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fengxuechao.seed.security.validator.MyConstraint;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
@@ -19,7 +20,7 @@ public class User {
 
     private String id;
 
-//    @MyConstraint(message = "这是一个测试")
+    @MyConstraint(message = "这是一个测试")
 //    @ApiModelProperty(value = "用户名")
     private String username;
 

@@ -42,6 +42,12 @@ spring security 技术栈
 - [RESTful API 设计参考文献列表](https://github.com/aisuhua/restful-api-design-references)
 - 还不错的[编程规范](https://xwjie.github.io/rule/)
 
+## Hibernate Validator
+
+![HibernateValidator1.png](md/HibernateValidator1.png)
+
+![HibernateValidator2.png](md/HibernateValidator2.png)
+
 
 
 

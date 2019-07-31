@@ -6,9 +6,11 @@ import com.fengxuechao.seed.security.dto.UserQueryCondition;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,5 +60,24 @@ public class UserController {
         user.setId("1");
         System.out.println(ReflectionToStringBuilder.toString(user, ToStringStyle.MULTI_LINE_STYLE));
         return user;
+    }
+
+    @PutMapping("{id:\\d+}")
+    public User updateUser(@PathVariable String id, @Validated @RequestBody User user, BindingResult errors) {
+        if (errors.hasErrors()) {
+            errors.getAllErrors().stream().forEach(error -> {
+                FieldError fieldError = (FieldError) error;
+                String message = MessageFormat.format("{0}:{1}", fieldError.getField(), fieldError.getDefaultMessage());
+                System.out.println(message);
+            });
+        }
+        user.setId("1");
+        System.out.println(ReflectionToStringBuilder.toString(user, ToStringStyle.MULTI_LINE_STYLE));
+        return user;
+    }
+
+    @DeleteMapping("{id:\\d+}")
+    public void delete(@PathVariable String id) {
+        System.out.println(id);
     }
 }
