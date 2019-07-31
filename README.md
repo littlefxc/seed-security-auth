@@ -48,6 +48,20 @@ spring security 技术栈
 
 ![HibernateValidator2.png](md/HibernateValidator2.png)
 
+## Restful API 错误处理 
+
+### Spring Boot中默认的错误处理机制
+
+错误处理类：`org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController`
+
+![SpringBoot默认错误处理机制.png](md/SpringBoot默认错误处理机制.png)
+
+#### 如何添加自定义的 404.html, 500.html
+
+![自定义错误页面的位置.png](md/自定义错误页面的位置.png)
+
+### 自定义异常处理
+
 
 
 

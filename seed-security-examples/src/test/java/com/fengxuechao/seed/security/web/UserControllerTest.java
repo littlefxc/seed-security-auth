@@ -78,7 +78,7 @@ public class UserControllerTest {
     public void whenCreateSuccess() throws Exception {
         // 前台传时间戳，后台框架自己会转换自己能处理的格式
         Date date = new Date();
-        String content = "{\"username\":\"tom\",\"password\":null,\"birthday\":"+date.getTime()+"}";
+        String content = "{\"username\":\"tom\",\"password\":null,\"birthday\":" + date.getTime() + "}";
         mockMvc.perform(post("/user")
                 .content(content)
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
@@ -91,7 +91,7 @@ public class UserControllerTest {
     public void whenUpdateSuccess() throws Exception {
         // 前台传时间戳，后台框架自己会转换自己能处理的格式
         Date date = new Date(LocalDateTime.now().plusYears(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
-        String content = "{\"id\":\"1\",\"username\":\"tom\",\"password\":null,\"birthday\":"+date.getTime()+"}";
+        String content = "{\"id\":\"1\",\"username\":\"tom\",\"password\":null,\"birthday\":" + date.getTime() + "}";
         mockMvc.perform(put("/user/1")
                 .content(content)
                 .contentType(MediaType.APPLICATION_JSON_UTF8))

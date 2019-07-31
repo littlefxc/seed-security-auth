@@ -45,6 +45,9 @@ public class UserController {
     @GetMapping("{id:\\d+}")
     @JsonView(User.UserDetailView.class)
     public User getInfo(@PathVariable String id) {
+        if (id.equals("2")) {
+            throw new RuntimeException("user not exist");
+        }
         User user = new User();
         user.setId(id);
         user.setUsername("tom");
@@ -53,10 +56,10 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser(@Validated @RequestBody User user, BindingResult errors) {
-        if (errors.hasErrors()) {
-            errors.getAllErrors().forEach(System.out::println);
-        }
+    public User createUser(@Validated @RequestBody User user) {
+//        if (errors.hasErrors()) {
+//            errors.getAllErrors().forEach(System.out::println);
+//        }
         user.setId("1");
         System.out.println(ReflectionToStringBuilder.toString(user, ToStringStyle.MULTI_LINE_STYLE));
         return user;
