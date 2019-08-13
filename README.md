@@ -62,6 +62,90 @@ spring security 技术栈
 
 ### 自定义异常处理
 
+全局统一异常处理
+
+## Restful API 的拦截
+
+需求：记录所有 API 的处理时间
+
+- 过滤器(Filter)
+
+    自定义filter
+
+    ```java
+    package com.fengxuechao.seed.security.web.filter;
+    
+    import lombok.extern.slf4j.Slf4j;
+    import org.springframework.stereotype.Component;
+    
+    import javax.servlet.*;
+    import java.io.IOException;
+    
+    /**
+     * @author fengxuechao
+     * @date 2019-08-01
+     */
+    @Slf4j
+    public class TimeFilter implements Filter {
+    
+        @Override
+        public void init(FilterConfig filterConfig) throws ServletException {
+            log.info("time filter init");
+        }
+    
+        @Override
+        public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+            log.info("time filter start");
+            long start = System.currentTimeMillis();
+            chain.doFilter(request,response);
+            log.info("time filter:{}ms", System.currentTimeMillis() - start);
+            log.info("time filter finish");
+        }
+    
+        @Override
+        public void destroy() {
+            log.info("time filter destroy");
+        }
+    }
+    ```
+    
+    如何添加第三方 filter 到过滤器链中去？
+    
+    ```java
+    /**
+     * @author fengxuechao
+     * @date 2019-08-08
+     */
+    @Configuration
+    public class WebConfig {
+    
+        /**
+         * 第三方 filter 加载方式
+         *
+         * @return
+         */
+        @Bean
+        public FilterRegistrationBean timeFilter() {
+            FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+    
+            TimeFilter timeFilter = new TimeFilter();
+            registrationBean.setFilter(timeFilter);
+    
+            List<String> urls = new ArrayList<>();
+            urls.add("/*");
+            registrationBean.setUrlPatterns(urls);
+    
+            return registrationBean;
+        }
+    }
+    ```
+
+- 拦截器(Interceptor)
+
+    
+
+- 切片(Aspect)
+
 
 
 

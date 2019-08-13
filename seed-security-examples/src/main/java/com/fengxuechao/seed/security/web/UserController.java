@@ -3,6 +3,7 @@ package com.fengxuechao.seed.security.web;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fengxuechao.seed.security.dto.User;
 import com.fengxuechao.seed.security.dto.UserQueryCondition;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,7 @@ import java.util.List;
  * @version 0.1
  * @date 2019/6/20
  */
+@Slf4j
 @RestController
 @RequestMapping("user")
 public class UserController {
@@ -48,6 +50,7 @@ public class UserController {
         if (id.equals("2")) {
             throw new RuntimeException("user not exist");
         }
+        log.info("进入 getInfo 服务");
         User user = new User();
         user.setId(id);
         user.setUsername("tom");
