@@ -31,8 +31,8 @@ public class TimeInterceptor implements HandlerInterceptor {
             throws Exception {
         log.info("preHandle");
 
-        log.info(((HandlerMethod) handler).getBean().getClass().getName());
-        log.info(((HandlerMethod) handler).getMethod().getName());
+//        log.info("处理器类名 {}", ((HandlerMethod) handler).getBean().getClass().getName());
+//        log.info("方法名 {}", ((HandlerMethod) handler).getMethod().getName());
 
         request.setAttribute("startTime", System.currentTimeMillis());
         return true;

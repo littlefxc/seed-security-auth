@@ -142,9 +142,147 @@ spring security 技术栈
 
 - 拦截器(Interceptor)
 
+    ```java
+    /**
+     * @author fengxuechao
+     * @date 2019-08-01
+     */
+    @Slf4j
+    @Component
+    public class TimeInterceptor implements HandlerInterceptor {
     
+        /**
+         * 这个方法在控制器某个方法调用之前会被调用
+         *
+         * @param request
+         * @param response
+         * @param handler
+         * @return
+         * @throws Exception
+         */
+        @Override
+        public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+                throws Exception {
+            log.info("preHandle");
+    
+    //        log.info("处理器类名 {}", ((HandlerMethod) handler).getBean().getClass().getName());
+    //        log.info("方法名 {}", ((HandlerMethod) handler).getMethod().getName());
+    
+            request.setAttribute("startTime", System.currentTimeMillis());
+            return true;
+        }
+    
+        /**
+         * 在控制器某个方法调用之后会被调用
+         * 如果控制器方法调用过程中产生异常，这个方法不会被调用
+         *
+         * @param request
+         * @param response
+         * @param handler
+         * @param modelAndView
+         * @throws Exception
+         */
+        @Override
+        public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+                               ModelAndView modelAndView) throws Exception {
+            log.info("postHandle");
+            Long start = (Long) request.getAttribute("startTime");
+            log.info("time interceptor 耗时:" + (System.currentTimeMillis() - start));
+    
+        }
+    
+        /**
+         * 不管控制器方法正常调用或者抛出异常，这个方法都会被调用
+         *
+         * @param request
+         * @param response
+         * @param handler
+         * @param ex
+         * @throws Exception
+         */
+        @Override
+        public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+                throws Exception {
+            log.info("afterCompletion");
+            Long start = (Long) request.getAttribute("startTime");
+            log.info("time interceptor 耗时:" + (System.currentTimeMillis() - start));
+            log.info("ex is " + ex);
+    
+        }
+    
+    }
+  
+    /**
+     * @author fengxuechao
+     * @date 2019-08-08
+     */
+    @Configuration
+    public class WebConfig implements WebMvcConfigurer {
+    
+        @Autowired
+        private TimeInterceptor timeInterceptor;
+    
+        /**
+         * 添加 Spring 拦截器
+         *
+         * @param registry
+         */
+        @Override
+        public void addInterceptors(InterceptorRegistry registry) {
+            registry.addInterceptor(timeInterceptor);
+        }
+    }
+    ```
 
 - 切片(Aspect)
+
+    ![SpringAop简介.png](md/SpringAop简介.png)
+    
+    ```java
+    /**
+     * @author fengxuechao
+     * @date 2019-08-21
+     */
+    @Slf4j
+    @Aspect
+    @Component
+    public class TimeAspect {
+    
+        /**
+         * 使用@Arount 完全覆盖了 @Before，@After @AfterThrowing，所以一般使用 @Around
+         *
+         * @param pjp
+         * @return
+         * @throws Throwable
+         */
+        @Around("execution(* com.fengxuechao.seed.security.web.UserController.*(..))")
+        public Object handleControllerMethod(ProceedingJoinPoint pjp) throws Throwable {
+    
+            log.info("time aspect start");
+    
+            Object[] args = pjp.getArgs();
+            for (Object arg : args) {
+                log.info("arg is " + arg);
+            }
+    
+            long start = System.currentTimeMillis();
+    
+            // 执行被被切(被拦截)的方法
+            Object object = pjp.proceed();
+    
+            log.info("time aspect 耗时:" + (System.currentTimeMillis() - start));
+    
+            log.info("time aspect end");
+    
+            return object;
+        }
+    
+    }
+    ```
+    
+过滤器，拦截器，切片的拦截顺序
+    
+![filter-interceptor-aspect拦截顺序.png](md/filter-interceptor-aspect拦截顺序.png)
 
 
 
