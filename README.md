@@ -288,7 +288,134 @@ spring security 技术栈
 
 ### 文件上传
 
-### 文件下载
+```java
+package com.fengxuechao.seed.security.web;
+
+import com.fengxuechao.seed.security.dto.FileInfo;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.IOUtils;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+
+/**
+ * 文件上传和下载
+ *
+ * @author fengxuechao
+ * @date 2019-08-28
+ */
+@Slf4j
+@RestController
+@RequestMapping("file")
+public class FileController {
+
+    private String folder = "/Users/fengxuechao/IdeaProjects/seed-security-auth/seed-security-examples/src/main/resources";
+
+    /**
+     * 文件上传
+     *
+     * @param file
+     * @return
+     * @throws IOException
+     */
+    @PostMapping
+    public FileInfo upload(MultipartFile file) throws IOException {
+
+        log.info("参数名 {}", file.getName());
+        log.info("文件原始名 {}", file.getOriginalFilename());
+        log.info("文件大小 {}", file.getSize());
+
+        File localFile = new File(folder, System.currentTimeMillis() + ".txt");
+
+        file.transferTo(localFile);
+
+        return new FileInfo(localFile.getAbsolutePath());
+    }
+
+    /**
+     * 文件下载
+     *
+     * @param id
+     * @param request
+     * @param response
+     * @throws Exception
+     */
+    @GetMapping("/{id}")
+    public void download(@PathVariable String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        try (InputStream inputStream = new FileInputStream(new File(folder, id + ".txt"));
+             OutputStream outputStream = response.getOutputStream()) {
+
+            response.setContentType("application/x-download");
+            // 以指定的文件名下载文件
+            response.addHeader("Content-Disposition", "attachment;filename=test.txt");
+            // 将文件的输入流拷贝到输出流，将文件内容响应到输出流中去
+            IOUtils.copy(inputStream, outputStream);
+            outputStream.flush();
+        }
+
+    }
+}
+```
+
+### 测试文件上传
+
+```java
+package com.fengxuechao.seed.security.web;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+
+import java.nio.charset.StandardCharsets;
+
+import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+/**
+ * @author fengxuechao
+ * @date 2019-08-28
+ */
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class FileControllerTest {
+
+    @Autowired
+    private WebApplicationContext wac;
+
+    private MockMvc mockMvc;
+
+    @Before
+    public void setUp() {
+        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+    }
+
+    @Test
+    public void whenUploadSuccess() throws Exception {
+//        mockMvc.perform(fileUpload("/file")
+        mockMvc.perform(multipart("/file")
+                .file(new MockMultipartFile(
+                        "file", "test.txt",
+                        "multipart/form-data", "hello upload".getBytes(StandardCharsets.UTF_8))))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
+}
+```
+
 
 
 

@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.text.MessageFormat;
 
 /**
  * 文件上传和下载
@@ -24,6 +23,13 @@ public class FileController {
 
     private String folder = "/Users/fengxuechao/IdeaProjects/seed-security-auth/seed-security-examples/src/main/resources";
 
+    /**
+     * 文件上传
+     *
+     * @param file
+     * @return
+     * @throws IOException
+     */
     @PostMapping
     public FileInfo upload(MultipartFile file) throws IOException {
 
@@ -38,11 +44,19 @@ public class FileController {
         return new FileInfo(localFile.getAbsolutePath());
     }
 
+    /**
+     * 文件下载
+     *
+     * @param id
+     * @param request
+     * @param response
+     * @throws Exception
+     */
     @GetMapping("/{id}")
     public void download(@PathVariable String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         try (InputStream inputStream = new FileInputStream(new File(folder, id + ".txt"));
-             OutputStream outputStream = response.getOutputStream();) {
+             OutputStream outputStream = response.getOutputStream()) {
 
             response.setContentType("application/x-download");
             // 以指定的文件名下载文件
