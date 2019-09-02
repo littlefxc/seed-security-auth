@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -49,5 +50,22 @@ public class WebConfig implements WebMvcConfigurer {
         registrationBean.setUrlPatterns(urls);
 
         return registrationBean;
+    }
+
+    /**
+     * Configure asynchronous request handling options.
+     *
+     * @param configurer
+     */
+    @Override
+    public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
+
+        // 配置异步请求的拦截器
+        // 注册 Callable 的拦截器
+        // configurer.registerCallableInterceptors()
+        // 注册 DeferredResult 的拦截器
+        // configurer.registerDeferredResultInterceptors()
+        // 配置线程池
+        // configurer.setTaskExecutor()
     }
 }

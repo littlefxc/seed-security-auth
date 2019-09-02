@@ -416,7 +416,21 @@ public class FileControllerTest {
 }
 ```
 
+## 异步处理 REST 服务
 
+场景1
+
+![异步处理REST请求.png](md/异步处理REST请求.png)
+
+场景2
+
+![异步处理REST请求场景2.png](md/异步处理REST请求场景2.png)
+
+### 使用 Runnable 异步处理 Rest 服务
+
+### 使用 DeferredResult 异步处理 Rest 服务
+
+### 异步处理配置
 
 
 
