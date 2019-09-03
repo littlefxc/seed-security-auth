@@ -3,6 +3,8 @@ package com.fengxuechao.seed.security.web;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fengxuechao.seed.security.dto.User;
 import com.fengxuechao.seed.security.dto.UserQueryCondition;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -27,7 +29,7 @@ public class UserController {
 
     @GetMapping
     @JsonView(User.UserSimpleView.class)
-//    @ApiOperation(value = "用户查询服务")
+    @ApiOperation(value = "用户列表查询服务")
     public List<User> query(UserQueryCondition condition) {
         System.out.println(ReflectionToStringBuilder.toString(condition, ToStringStyle.MULTI_LINE_STYLE));
 
@@ -46,7 +48,8 @@ public class UserController {
      */
     @GetMapping("{id:\\d+}")
     @JsonView(User.UserDetailView.class)
-    public User getInfo(@PathVariable String id) {
+    @ApiOperation(value = "用户查询服务")
+    public User getInfo(@ApiParam("用户Id") @PathVariable String id) {
         if (id.equals("2")) {
             throw new RuntimeException("user not exist");
         }
@@ -59,6 +62,7 @@ public class UserController {
     }
 
     @PostMapping
+    @ApiOperation(value = "创建用户")
     public User createUser(@Validated @RequestBody User user) {
 //        if (errors.hasErrors()) {
 //            errors.getAllErrors().forEach(System.out::println);
@@ -69,7 +73,8 @@ public class UserController {
     }
 
     @PutMapping("{id:\\d+}")
-    public User updateUser(@PathVariable String id, @Validated @RequestBody User user, BindingResult errors) {
+    @ApiOperation(value = "更新用户")
+    public User updateUser(@ApiParam("用户Id") @PathVariable String id, @Validated @RequestBody User user, BindingResult errors) {
         if (errors.hasErrors()) {
             errors.getAllErrors().stream().forEach(error -> {
                 FieldError fieldError = (FieldError) error;
@@ -83,7 +88,8 @@ public class UserController {
     }
 
     @DeleteMapping("{id:\\d+}")
-    public void delete(@PathVariable String id) {
+    @ApiOperation(value = "删除用户")
+    public void delete(@ApiParam("用户Id") @PathVariable String id) {
         System.out.println(id);
     }
 }

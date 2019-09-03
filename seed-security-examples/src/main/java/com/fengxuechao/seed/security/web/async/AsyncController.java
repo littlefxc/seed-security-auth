@@ -3,7 +3,7 @@ package com.fengxuechao.seed.security.web.async;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
 
@@ -32,7 +32,7 @@ public class AsyncController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/order/queue")
+    @GetMapping("/order/queue")
     public DeferredResult<String> order() throws Exception {
         log.info("主线程开始");
 
@@ -51,7 +51,7 @@ public class AsyncController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/order/callable")
+    @GetMapping("/order/callable")
     public Callable<String> orderCallable() throws Exception {
         log.info("主线程开始");
         return new Callable<String>() {

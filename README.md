@@ -432,5 +432,11 @@ public class FileControllerTest {
 
 ### 异步处理配置
 
+## 使用 Swagger 自动生成文档
+
+### 使用 swagger 自动生成 html 文档
+
+### 使用 WireMock 快速伪造 Restful 服务
+
 
 
