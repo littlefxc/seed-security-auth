@@ -3,9 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>seed-security-auth</artifactId>
         <groupId>com.fengxuechao.seed</groupId>
-        <version>1.0.0-SNAPSHOT</version>
+        <artifactId>seed-security-auth</artifactId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>seed-security-browser</artifactId>
@@ -15,11 +15,21 @@
         <dependency>
             <groupId>com.fengxuechao.seed</groupId>
             <artifactId>seed-security-core</artifactId>
-            <version>${seed-security.version}</version>
+            <version>${seed.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session</artifactId>
+            <version>1.3.5.RELEASE</version>
         </dependency>
     </dependencies>
 

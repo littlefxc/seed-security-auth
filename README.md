@@ -440,5 +440,40 @@ public class FileControllerTest {
 
 [wiremock 官网](http://wiremock.org/)
 
+## SpringSecurity 核心功能
+
+- 认证（你是谁）
+- 授权（你能干什么）
+- 攻击防护（防止伪造身份）
+
+### Spring Security 基本原理
+
+最核心的基本原理：
+
+![springsecurity基本原理.png](md/springsecurity基本原理.png)
+
+ExceptionTranslationFilter 捕获 FilterSecurityInterceptor 抛出的异常做相应的处理
+
+spring security提供的所有功能、特性都是建立在上图所展示的过滤器的基础上的
+
+### 用户名 + 密码认证
+
+#### 自定义用户认证逻辑
+
+- 处理用户信息获取逻辑
+    
+    `org.springframework.security.core.userdetails.UserDetailsService`
+
+- 处理用户校验逻辑
+
+    `org.springframework.security.core.userdetails.UserDetails`
+
+- 处理密码加密解密
+
+    `org.springframework.security.crypto.password.PasswordEncoder`
+
+### 手机号 + 短信认证
+
+
 
 
