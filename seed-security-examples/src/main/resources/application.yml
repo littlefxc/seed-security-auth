@@ -8,9 +8,6 @@ spring:
       url: jdbc:mysql://127.0.0.1:3306/seed_security?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
       username: root
       password: 123456
-security:
-  basic:
-    enabled: false # 关闭 spring boot 下的 spring security 的默认配置
 logging:
   level:
     com.fengxuechao.seed.security.example: debug
