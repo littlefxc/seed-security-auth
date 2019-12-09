@@ -494,6 +494,28 @@ spring security提供的所有功能、特性都是建立在上图所展示的�
 
 ### 获取用户信息
 
+```java
+@GetMapping("profile")
+public Object userProfile(@AuthenticationPrincipal UserDetails userDetails) {
+    return userDetails;
+}
+
+@GetMapping("profile")
+public Object userProfile(Authentication authentication) {
+    return authentication;
+}
+```
+
+## 图形验证码功能
+
+### 开发生成图形验证码接口
+
+[图形验证码接口.md](docs/图形验证码接口.md)
+
+### 在认证流程中加入图形验证码校验
+
+
+
 
 
 

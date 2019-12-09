@@ -3,12 +3,14 @@
  */
 package com.fengxuechao.seed.security.properties;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @author fengxuechao
  * @date 2019-09-11
  */
+@Data
 @ConfigurationProperties(prefix = "seed.security")
 public class SecurityProperties {
 
@@ -19,7 +21,7 @@ public class SecurityProperties {
     /**
      * 验证码配置
      */
-//	private ValidateCodeProperties code = new ValidateCodeProperties();
+    private ValidateCodeProperties code = new ValidateCodeProperties();
     /**
      * 社交登录配置
      */
@@ -28,13 +30,5 @@ public class SecurityProperties {
      * OAuth2认证服务器配置
      */
 //	private OAuth2Properties oauth2 = new OAuth2Properties();
-
-    public BrowserProperties getBrowser() {
-        return browser;
-    }
-
-    public void setBrowser(BrowserProperties browser) {
-        this.browser = browser;
-    }
 }
 
