@@ -11,3 +11,9 @@ spring:
 logging:
   level:
     com.fengxuechao.seed.security.example: debug
+
+seed:
+  security:
+    browser:
+      signInResponseType: REDIRECT
+#      singInSuccessUrl: /index.html

@@ -17,7 +17,7 @@ import java.util.List;
  * @author fengxuechao
  * @date 2019-08-08
  */
-@Configuration
+//@Configuration
 public class WebConfig implements WebMvcConfigurer {
 
     @Autowired

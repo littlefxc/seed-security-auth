@@ -472,15 +472,27 @@ spring security提供的所有功能、特性都是建立在上图所展示的�
 
 - 处理密码加密解密
 
-    `org.springframework.security.crypto.password.PasswordEncoder`
-    
+    `PasswordEncoder`
+
 ### 个性化用户认证流程
 
-- 自定义登录页面
-- 自定义登录成功处理
-- 自定义登录失败处理
+- 自定义登录页面 http.formLogin().loginPage("/seed-signIn.html")
+- 自定义登录成功处理 AuthenticationSuccessHandler
+- 自定义登录失败处理 AuthenticationFailureHandler
 
 ![系统配置封装.png](md/系统配置封装.png)
+
+## 认证流程源码级详解
+
+### 认证处理流程说明
+
+[认证处理流程说明.md](docs/认证处理流程说明.md)
+
+### 认证结果如何在多个请求之间共享
+
+[认证结果如何在多个请求之间共享.md](docs/认证结果如何在多个请求之间共享.md)
+
+### 获取用户信息
 
 
 

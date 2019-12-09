@@ -1,5 +1,7 @@
 package com.fengxuechao.seed.security.browser;
 
+import com.fengxuechao.seed.security.browser.authentication.SeedAuthenticationFailureHandler;
+import com.fengxuechao.seed.security.browser.authentication.SeedAuthenticationSuccessHandler;
 import com.fengxuechao.seed.security.properties.SecurityProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,12 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SecurityProperties securityProperties;
 
+    @Autowired
+    private SeedAuthenticationSuccessHandler seedAuthenticationSuccessHandler;
+
+    @Autowired
+    private SeedAuthenticationFailureHandler seedAuthenticationFailureHandler;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -37,6 +45,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()
                 .loginPage("/seed-signIn.html")
                 .loginProcessingUrl("/authentication/form")
+                .successHandler(seedAuthenticationSuccessHandler)
+                .failureHandler(seedAuthenticationFailureHandler)
             .and()
                 .authorizeRequests()
                 .antMatchers("/authentication/require", securityProperties.getBrowser().getSignInPage()).permitAll()

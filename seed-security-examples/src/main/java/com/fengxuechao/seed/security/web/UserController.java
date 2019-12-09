@@ -8,6 +8,11 @@ import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
@@ -91,5 +96,10 @@ public class UserController {
     @ApiOperation(value = "删除用户")
     public void delete(@ApiParam("用户Id") @PathVariable String id) {
         System.out.println(id);
+    }
+
+    @GetMapping("profile")
+    public Object userProfile(@AuthenticationPrincipal UserDetails userDetails) {
+        return userDetails;
     }
 }
