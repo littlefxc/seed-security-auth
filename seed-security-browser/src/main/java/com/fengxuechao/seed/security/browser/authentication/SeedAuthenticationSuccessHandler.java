@@ -1,7 +1,7 @@
 package com.fengxuechao.seed.security.browser.authentication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fengxuechao.seed.security.browser.support.SimpleResponse;
+import com.fengxuechao.seed.security.browser.support.ResultBean;
 import com.fengxuechao.seed.security.properties.LoginResponseType;
 import com.fengxuechao.seed.security.properties.SecurityProperties;
 import lombok.extern.slf4j.Slf4j;
@@ -50,7 +50,7 @@ public class SeedAuthenticationSuccessHandler extends SavedRequestAwareAuthentic
             log.info("返回 json");
             response.setContentType("application/json;charset=UTF-8");
             String type = authentication.getClass().getSimpleName();
-            response.getWriter().write(objectMapper.writeValueAsString(new SimpleResponse(type)));
+            response.getWriter().write(objectMapper.writeValueAsString(ResultBean.ok(type)));
         } else {
             log.info("跳转");
             // 如果设置了 seed.security.browser.singInSuccessUrl，总是跳到设置的地址上

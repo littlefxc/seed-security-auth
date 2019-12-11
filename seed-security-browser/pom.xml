@@ -11,6 +11,9 @@
     <artifactId>seed-security-browser</artifactId>
     <packaging>jar</packaging>
 
+    <properties>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.fengxuechao.seed</groupId>

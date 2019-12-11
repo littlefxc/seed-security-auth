@@ -1,6 +1,6 @@
-package com.fengxuechao.seed.security.browser.validate.code.image;
+package com.fengxuechao.seed.security.validate.code.image;
 
-import com.fengxuechao.seed.security.browser.validate.code.ValidateCode;
+import com.fengxuechao.seed.security.validate.code.ValidateCode;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -24,9 +24,13 @@ public class ImageCode extends ValidateCode {
      */
     private BufferedImage image;
 
-    public ImageCode(BufferedImage image, String code, int expireIn) {
+    public ImageCode(BufferedImage image, String code, int expireIn){
+        super(code, expireIn);
         this.image = image;
-        setCode(code);
-       setExpireTime(LocalDateTime.now().plusSeconds(expireIn));
+    }
+
+    public ImageCode(BufferedImage image, String code, LocalDateTime expireTime){
+        super(code, expireTime);
+        this.image = image;
     }
 }

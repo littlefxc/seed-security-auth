@@ -514,6 +514,8 @@ public Object userProfile(Authentication authentication) {
 
 ### 在认证流程中加入图形验证码校验
 
+[在认证流程中加入图形验证码校验](docs/在认证流程中加入图形验证码校验.md)
+
 
 
 

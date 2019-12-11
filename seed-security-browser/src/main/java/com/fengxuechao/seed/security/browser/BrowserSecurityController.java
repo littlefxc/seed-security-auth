@@ -1,6 +1,7 @@
 package com.fengxuechao.seed.security.browser;
 
-import com.fengxuechao.seed.security.browser.support.SimpleResponse;
+import com.fengxuechao.seed.security.browser.support.ResultBean;
+import com.fengxuechao.seed.security.properties.SecurityConstants;
 import com.fengxuechao.seed.security.properties.SecurityProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -44,9 +45,9 @@ public class BrowserSecurityController {
      * @return
      * @throws IOException
      */
-    @RequestMapping("/authentication/require")
+    @RequestMapping(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
-    public SimpleResponse requireAuthentication(HttpServletRequest request, HttpServletResponse response)
+    public ResultBean requireAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
         // 从缓存中获取SpringSecurity缓存的请求
@@ -59,6 +60,6 @@ public class BrowserSecurityController {
                 redirectStrategy.sendRedirect(request, response, securityProperties.getBrowser().getSignInPage());
             }
         }
-        return new SimpleResponse("访问的服务需要身份认证，请引导用户到登录页");
+        return new ResultBean(HttpStatus.UNAUTHORIZED.value(), "访问的服务需要身份认证，请引导用户到登录页");
     }
 }

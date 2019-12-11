@@ -1,8 +1,7 @@
-package com.fengxuechao.seed.security.browser.validate.code.image;
+package com.fengxuechao.seed.security.validate.code.image;
 
-import com.fengxuechao.seed.security.browser.validate.code.ValidateCode;
-import com.fengxuechao.seed.security.browser.validate.code.ValidateCodeGenerator;
 import com.fengxuechao.seed.security.properties.SecurityProperties;
+import com.fengxuechao.seed.security.validate.code.ValidateCodeGenerator;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;

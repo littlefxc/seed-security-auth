@@ -1,4 +1,4 @@
-package com.fengxuechao.seed.security.browser.validate.code;
+package com.fengxuechao.seed.security.validate.code;
 
 import org.springframework.web.context.request.ServletWebRequest;
 

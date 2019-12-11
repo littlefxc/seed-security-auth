@@ -16,7 +16,7 @@ public interface SecurityConstants {
 	/**
 	 * 当请求需要身份认证时，默认跳转的url
 	 * 
-	 * @see SecurityController
+	 * @see com.fengxuechao.seed.security.browser.BrowserSecurityController
 	 */
 	String DEFAULT_UNAUTHENTICATION_URL = "/authentication/require";
 	/**

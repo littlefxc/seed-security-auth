@@ -1,7 +1,7 @@
 package com.fengxuechao.seed.security.browser.authentication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fengxuechao.seed.security.browser.support.SimpleResponse;
+import com.fengxuechao.seed.security.browser.support.ResultBean;
 import com.fengxuechao.seed.security.properties.LoginResponseType;
 import com.fengxuechao.seed.security.properties.SecurityProperties;
 import lombok.extern.slf4j.Slf4j;
@@ -47,9 +47,10 @@ public class SeedAuthenticationFailureHandler extends SimpleUrlAuthenticationFai
         log.info("", exception);
         if (LoginResponseType.JSON.equals(securityProperties.getBrowser().getSignInResponseType())) {
 			log.info("返回 json");
-            response.setStatus(HttpStatus.UNAUTHORIZED.value());
+			int status = HttpStatus.UNAUTHORIZED.value();
+            response.setStatus(status);
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(objectMapper.writeValueAsString(new SimpleResponse(exception.getMessage())));
+            response.getWriter().write(objectMapper.writeValueAsString(new ResultBean(status, exception.getMessage())));
         } else {
 			log.info("跳转");
             super.onAuthenticationFailure(request, response, exception);
