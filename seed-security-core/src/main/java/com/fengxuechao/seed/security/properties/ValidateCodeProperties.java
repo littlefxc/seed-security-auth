@@ -3,11 +3,15 @@
  */
 package com.fengxuechao.seed.security.properties;
 
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
 /**
  * 验证码配置
  * @author fengxuechao
  * @date 2019-09-11
  */
+@Data
 public class ValidateCodeProperties {
 	
 	/**
@@ -20,20 +24,14 @@ public class ValidateCodeProperties {
 	 */
 	private SmsCodeProperties sms = new SmsCodeProperties();
 
+	@ConfigurationProperties(prefix = "seed.security.code.image")
 	public ImageCodeProperties getImage() {
-		return image; 
+		return image;
 	}
 
-	public void setImage(ImageCodeProperties image) {
-		this.image = image;
-	}
-
+	@ConfigurationProperties(prefix = "seed.security.code.sms")
 	public SmsCodeProperties getSms() {
 		return sms;
 	}
 
-	public void setSms(SmsCodeProperties sms) {
-		this.sms = sms;
-	}
-	
 }

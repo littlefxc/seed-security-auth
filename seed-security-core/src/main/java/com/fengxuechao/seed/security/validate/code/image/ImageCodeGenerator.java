@@ -28,13 +28,17 @@ public class ImageCodeGenerator implements ValidateCodeGenerator {
 
     /**
      * 生成校验码
+     * 验证码的基本参数可配置：
+     * 请求参数：width, height
+     * 配置文件参数：seed.security.code.image.*
      *
      * @param request
      * @return
      */
     @Override
     public ImageCode generate(ServletWebRequest request) {
-        int width = ServletRequestUtils.getIntParameter(request.getRequest(), "width",
+        int width = ServletRequestUtils
+                .getIntParameter(request.getRequest(), "width",
                 securityProperties.getCode().getImage().getWidth());
         int height = ServletRequestUtils.getIntParameter(request.getRequest(), "height",
                 securityProperties.getCode().getImage().getHeight());
