@@ -456,6 +456,12 @@ ExceptionTranslationFilter 捕获 FilterSecurityInterceptor 抛出的异常做�
 
 spring security提供的所有功能、特性都是建立在上图所展示的过滤器的基础上的
 
+1. [核心Filter-FilterSecurityInterceptor](https://www.iteye.com/blog/fengyilin-2411449)
+2. [核心Filter-ExceptionTranslationFilter](https://www.iteye.com/blog/fengyilin-2411524)
+3. [核心Filter-SecurityContextPersistenceFilter](https://www.iteye.com/blog/fengyilin-2411839)
+4. [核心Filter-UsernamePasswordAuthenticationFilter](https://www.iteye.com/blog/fengyilin-2412078)
+
+
 ### 用户名 + 密码认证
 
 ### 手机号 + 短信认证
@@ -515,6 +521,10 @@ public Object userProfile(Authentication authentication) {
 ### 在认证流程中加入图形验证码校验
 
 [在认证流程中加入图形验证码校验](docs/在认证流程中加入图形验证码校验.md)
+
+## 实现 "记住我" 功能
+
+[实现"记住我"功能.md](docs/实现"记住我"功能.md)
 
 
 
