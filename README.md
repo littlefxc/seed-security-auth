@@ -524,7 +524,7 @@ public Object userProfile(Authentication authentication) {
 
 ## 实现 "记住我" 功能
 
-[实现"记住我"功能.md](docs/实现"记住我"功能.md)
+[实现记住我功能.md](docs/实现记住我功能.md)
 
 
 
