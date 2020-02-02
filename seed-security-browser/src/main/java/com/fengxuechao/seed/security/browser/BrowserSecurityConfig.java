@@ -79,8 +79,9 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                     .authorizeRequests()
                     .antMatchers(
                             SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
+                            SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_MOBILE,
                             securityProperties.getBrowser().getSignInPage(),
-                            "/code/*").permitAll()
+                            SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .csrf().disable()
