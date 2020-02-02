@@ -107,9 +107,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(
                         SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
                         securityProperties.getBrowser().getSignInPage(),
-                        "/code/image").permitAll()
-                .anyRequest()
-                .authenticated()
+                        "/code/*").permitAll()
+                .anyRequest().authenticated()
             .and()
                 .csrf().disable()
         ;

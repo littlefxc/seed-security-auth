@@ -526,6 +526,10 @@ public Object userProfile(Authentication authentication) {
 
 [实现记住我功能.md](docs/实现记住我功能.md)
 
+## 短信验证码功能
+
+[实现短信验证码登录](docs/实现短信验证码登录.md)
+
 
 
 

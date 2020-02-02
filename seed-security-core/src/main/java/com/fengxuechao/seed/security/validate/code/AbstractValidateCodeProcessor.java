@@ -16,7 +16,7 @@ import java.util.Map;
 public abstract class AbstractValidateCodeProcessor<T extends ValidateCode> implements ValidateCodeProcessor {
 
     /**
-     * 收集系统中所有的 {@link ValidateCodeGenerator} 接口的实现。
+     * 自动收集 Spring IOC 中所有的 {@link ValidateCodeGenerator} 接口的实现。
      */
     @Autowired
     private Map<String, ValidateCodeGenerator> validateCodeGenerators;
