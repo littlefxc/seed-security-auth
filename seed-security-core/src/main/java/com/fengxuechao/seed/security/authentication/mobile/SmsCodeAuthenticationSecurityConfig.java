@@ -1,9 +1,7 @@
-/**
- *
- */
 package com.fengxuechao.seed.security.authentication.mobile;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -28,12 +26,13 @@ import java.util.UUID;
 public class SmsCodeAuthenticationSecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 
     @Autowired
-    private AuthenticationSuccessHandler imoocAuthenticationSuccessHandler;
+    private AuthenticationSuccessHandler seedAuthenticationSuccessHandler;
 
     @Autowired
-    private AuthenticationFailureHandler imoocAuthenticationFailureHandler;
+    private AuthenticationFailureHandler seedAuthenticationFailureHandler;
 
     @Autowired
+    @Qualifier("myUserDetailsService")
     private UserDetailsService userDetailsService;
 
     @Autowired
@@ -44,18 +43,17 @@ public class SmsCodeAuthenticationSecurityConfig extends SecurityConfigurerAdapt
 
         SmsCodeAuthenticationFilter smsCodeAuthenticationFilter = new SmsCodeAuthenticationFilter();
         smsCodeAuthenticationFilter.setAuthenticationManager(http.getSharedObject(AuthenticationManager.class));
-        smsCodeAuthenticationFilter.setAuthenticationSuccessHandler(imoocAuthenticationSuccessHandler);
-        smsCodeAuthenticationFilter.setAuthenticationFailureHandler(imoocAuthenticationFailureHandler);
+        smsCodeAuthenticationFilter.setAuthenticationSuccessHandler(seedAuthenticationSuccessHandler);
+        smsCodeAuthenticationFilter.setAuthenticationFailureHandler(seedAuthenticationFailureHandler);
         String key = UUID.randomUUID().toString();
-        smsCodeAuthenticationFilter.setRememberMeServices(new PersistentTokenBasedRememberMeServices(key, userDetailsService, persistentTokenRepository));
+        smsCodeAuthenticationFilter.setRememberMeServices(new PersistentTokenBasedRememberMeServices(
+                key, userDetailsService, persistentTokenRepository));
 
         SmsCodeAuthenticationProvider smsCodeAuthenticationProvider = new SmsCodeAuthenticationProvider();
         smsCodeAuthenticationProvider.setUserDetailsService(userDetailsService);
 
         http.authenticationProvider(smsCodeAuthenticationProvider)
                 .addFilterAfter(smsCodeAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-
-//		
 
     }
 
