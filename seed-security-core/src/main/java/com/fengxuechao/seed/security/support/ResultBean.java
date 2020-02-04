@@ -1,4 +1,4 @@
-package com.fengxuechao.seed.security.browser.support;
+package com.fengxuechao.seed.security.support;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;

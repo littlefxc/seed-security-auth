@@ -1,6 +1,6 @@
 package com.fengxuechao.seed.security.browser;
 
-import com.fengxuechao.seed.security.browser.support.ResultBean;
+import com.fengxuechao.seed.security.support.ResultBean;
 import com.fengxuechao.seed.security.properties.SecurityConstants;
 import com.fengxuechao.seed.security.properties.SecurityProperties;
 import lombok.extern.slf4j.Slf4j;
