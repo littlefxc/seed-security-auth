@@ -530,6 +530,10 @@ public Object userProfile(Authentication authentication) {
 
 [实现短信验证码登录](docs/实现短信验证码登录.md)
 
+## 使用 Spring Social 开发第三方登录
+
+[使用SpringSocial开发第三方登录.md](docs/使用SpringSocial开发第三方登录.md)
+
 
 
 
