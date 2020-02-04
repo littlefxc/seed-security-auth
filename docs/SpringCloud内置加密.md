@@ -54,3 +54,17 @@ RsaSecretEncryptor将使用KeyStore里面存储的密钥对的公钥进行加密
 详情可参考RsaSecretEncryptor的源码
 
 当同时指定了`encrypt.key`和`encrypt.keyStore.xxx`相关信息时，Spring Cloud将优先创建基于RSA的TextEncryptor。
+
+## 生成证书文件
+
+```sh
+keytool -genkeypair -alias changeme -keyalg RSA \
+  -dname "CN=Web Server,OU=Unit,O=Organization,L=City,S=State,C=US" \
+  -keypass changeme -keystore server.jks -storepass changeme
+```
+
+在当前目录下生成server.jks文件（证书文件）
+
+## 参考资源
+
+[spring cloud config学习三：安全与加密解密](https://www.jianshu.com/p/1dbd9a83880f)
