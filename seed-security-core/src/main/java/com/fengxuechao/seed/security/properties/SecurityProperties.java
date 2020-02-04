@@ -27,7 +27,7 @@ public class SecurityProperties {
     /**
      * 社交登录配置
      */
-//    private SocialProperties social = new SocialProperties();
+    private SocialProperties social = new SocialProperties();
 
     /**
      * OAuth2认证服务器配置
@@ -44,10 +44,10 @@ public class SecurityProperties {
         return code;
     }
 
-//    @ConfigurationProperties(prefix = "seed.security.social")
-//    public SocialProperties getSocial() {
-//        return social;
-//    }
+    @ConfigurationProperties(prefix = "seed.security.social")
+    public SocialProperties getSocial() {
+        return social;
+    }
 
 //    @ConfigurationProperties(prefix = "seed.security.oauth2")
 //    public OAuth2Properties getOauth2() {

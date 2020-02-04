@@ -7,15 +7,18 @@ import com.fengxuechao.seed.security.properties.SecurityProperties;
 import com.fengxuechao.seed.security.validate.code.ValidateCodeSecurityConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.social.security.SpringSocialConfigurer;
 
 import javax.sql.DataSource;
 
@@ -31,10 +34,10 @@ import javax.sql.DataSource;
 public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private FormAuthenticationConfig formAuthenticationConfig;
+    private SecurityProperties securityProperties;
 
     @Autowired
-    private SecurityProperties securityProperties;
+    private FormAuthenticationConfig formAuthenticationConfig;
 
     @Autowired
     private ValidateCodeSecurityConfig validateCodeSecurityConfig;
@@ -43,7 +46,11 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
 
     @Autowired
-    private MyUserDetailsService userDetailsService;
+    private SpringSocialConfigurer seedSpringSocialConfigurer;
+
+    @Autowired
+    @Qualifier("myUserDetailsService")
+    private UserDetailsService userDetailsService;
 
     @Autowired
     private PersistentTokenRepository persistentTokenRepository;
@@ -67,6 +74,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .apply(validateCodeSecurityConfig)
                 .and().apply(smsCodeAuthenticationSecurityConfig)
+                .and().apply(seedSpringSocialConfigurer)
                 .and()
                     // "记住我" 配置，如果想在'记住我'登录时记录日志，可以注册一个InteractiveAuthenticationSuccessEvent事件的监听器
                     .rememberMe()

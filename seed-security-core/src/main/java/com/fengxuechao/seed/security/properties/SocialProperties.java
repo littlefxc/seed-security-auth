@@ -1,13 +1,14 @@
-/**
- * 
- */
 package com.fengxuechao.seed.security.properties;
+
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * 社交登录配置项
  * @author fengxuechao
  * @date 2019-09-11
  */
+@Data
 public class SocialProperties {
 	
 	/**
@@ -19,28 +20,13 @@ public class SocialProperties {
 	
 	private WeixinProperties weixin = new WeixinProperties();
 
+	@ConfigurationProperties(prefix = "seed.security.social.qq")
 	public QQProperties getQq() {
 		return qq;
 	}
 
-	public void setQq(QQProperties qq) {
-		this.qq = qq;
-	}
-
-	public String getFilterProcessesUrl() {
-		return filterProcessesUrl;
-	}
-
-	public void setFilterProcessesUrl(String filterProcessesUrl) {
-		this.filterProcessesUrl = filterProcessesUrl;
-	}
-
+	@ConfigurationProperties(prefix = "seed.security.social.weixin")
 	public WeixinProperties getWeixin() {
 		return weixin;
 	}
-
-	public void setWeixin(WeixinProperties weixin) {
-		this.weixin = weixin;
-	}
-	
 }
