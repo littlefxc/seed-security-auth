@@ -543,3 +543,9 @@ public class SocialConfig extends SocialConfigurerAdapter {
 ```
 http.apply(seedSocialSecurityConfig)
 ```
+
+## Spring Social 第三方登录涉及到的关键类和接口以及核心调用顺序
+
+![SpringSoical关键类流程.png](SpringSoical关键类流程.png)
+
+## 处理注册逻辑
