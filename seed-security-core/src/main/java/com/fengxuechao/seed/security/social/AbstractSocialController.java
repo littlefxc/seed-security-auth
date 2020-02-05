@@ -7,7 +7,7 @@ import org.springframework.social.connect.Connection;
  * @author fengxuechao
  * @date 2020-02-04
  */
-public abstract class SocialController {
+public abstract class AbstractSocialController {
 
     /**
      * 根据Connection信息构建SocialUserInfo

@@ -1,6 +1,7 @@
 package com.fengxuechao.seed.security.properties;
 
 import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * 浏览器环境配置项
@@ -48,4 +49,8 @@ public class BrowserProperties {
      */
     private String singInSuccessUrl;
 
+    @ConfigurationProperties(prefix = "seed.security.browser.session")
+    public SessionProperties getSession() {
+        return session;
+    }
 }

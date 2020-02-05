@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.fengxuechao.seed.security.properties;
 
 /**

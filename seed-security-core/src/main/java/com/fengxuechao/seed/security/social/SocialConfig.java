@@ -75,6 +75,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
     public SpringSocialConfigurer seedSocialSecurityConfig() {
         String filterProcessesUrl = securityProperties.getSocial().getFilterProcessesUrl();
         SeedSpringSocialConfigurer configurer = new SeedSpringSocialConfigurer(filterProcessesUrl);
+        // 配置社交登录时找不到用户时引导用户去注册页面
         configurer.signupUrl(securityProperties.getBrowser().getSignUpUrl());
         configurer.setSocialAuthenticationFilterPostProcessor(socialAuthenticationFilterPostProcessor);
         return configurer;
@@ -82,14 +83,16 @@ public class SocialConfig extends SocialConfigurerAdapter {
 
     /**
      * 用来处理注册流程的工具类
+     * 主要解决两个问题：
+     * 1. 在注册过程中如何获取 Spring Social 信息
+     * 2. 注册完成后如何把业务系统的用户ID再传给 Spring Social
      *
      * @param connectionFactoryLocator
      * @return
      */
     @Bean
     public ProviderSignInUtils providerSignInUtils(ConnectionFactoryLocator connectionFactoryLocator) {
-        return new ProviderSignInUtils(connectionFactoryLocator,
-                getUsersConnectionRepository(connectionFactoryLocator)) {
+        return new ProviderSignInUtils(connectionFactoryLocator, getUsersConnectionRepository(connectionFactoryLocator)) {
         };
     }
 }

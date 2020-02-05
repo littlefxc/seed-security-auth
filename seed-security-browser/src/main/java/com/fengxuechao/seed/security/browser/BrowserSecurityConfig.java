@@ -2,6 +2,7 @@ package com.fengxuechao.seed.security.browser;
 
 import com.fengxuechao.seed.security.authentication.FormAuthenticationConfig;
 import com.fengxuechao.seed.security.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
+import com.fengxuechao.seed.security.authorize.AuthorizeConfigManager;
 import com.fengxuechao.seed.security.properties.SecurityConstants;
 import com.fengxuechao.seed.security.properties.SecurityProperties;
 import com.fengxuechao.seed.security.validate.code.ValidateCodeSecurityConfig;
@@ -49,6 +50,9 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     private SpringSocialConfigurer seedSpringSocialConfigurer;
 
     @Autowired
+    private AuthorizeConfigManager authorizeConfigManager;
+
+    @Autowired
     @Qualifier("myUserDetailsService")
     private UserDetailsService userDetailsService;
 
@@ -70,7 +74,9 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
         formAuthenticationConfig.configure(http);
 
         // @formatter:off
+
         // http.httpBasic()
+
         http
                 .apply(validateCodeSecurityConfig)
                 .and().apply(smsCodeAuthenticationSecurityConfig)
@@ -84,17 +90,12 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                     .tokenValiditySeconds(securityProperties.getBrowser().getRememberMeSeconds())
                     .userDetailsService(userDetailsService)
                 .and()
-                    .authorizeRequests()
-                    .antMatchers(
-                            SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
-                            SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_MOBILE,
-                            securityProperties.getBrowser().getSignInPage(),
-                            SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*").permitAll()
-                    .anyRequest().authenticated()
-                .and()
                     .csrf().disable()
         ;
+
         // @formatter:on
+
+        authorizeConfigManager.config(http.authorizeRequests());
     }
 
     /**
