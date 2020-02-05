@@ -2,7 +2,7 @@ package com.fengxuechao.seed.security.social.weixin.config;
 
 import com.fengxuechao.seed.security.properties.SecurityProperties;
 import com.fengxuechao.seed.security.properties.WeixinProperties;
-import com.fengxuechao.seed.security.social.view.ImoocConnectView;
+import com.fengxuechao.seed.security.social.view.SeedConnectView;
 import com.fengxuechao.seed.security.social.weixin.connect.WeixinConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -24,7 +24,7 @@ import org.springframework.web.servlet.View;
  * @date 2020-02-04
  */
 @Configuration
-@ConditionalOnProperty(prefix = "imooc.security.social.weixin", name = "app-id")
+@ConditionalOnProperty(prefix = "seed.security.social.weixin", name = "app-id")
 public class WeixinAutoConfiguration extends SocialConfigurerAdapter {
 
     @Autowired
@@ -45,7 +45,7 @@ public class WeixinAutoConfiguration extends SocialConfigurerAdapter {
     @Bean({"connect/weixinConnect", "connect/weixinConnected"})
     @ConditionalOnMissingBean(name = "weixinConnectedView")
     public View weixinConnectedView() {
-        return new ImoocConnectView();
+        return new SeedConnectView();
     }
 
     /**

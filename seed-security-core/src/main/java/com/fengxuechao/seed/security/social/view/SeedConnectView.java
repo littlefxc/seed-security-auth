@@ -12,7 +12,7 @@ import java.util.Map;
  * @author fengxuechao
  * @date 2020-02-04
  */
-public class ImoocConnectView extends AbstractView {
+public class SeedConnectView extends AbstractView {
 
     @Override
     protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,

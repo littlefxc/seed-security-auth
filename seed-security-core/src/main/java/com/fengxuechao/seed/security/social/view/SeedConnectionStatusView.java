@@ -20,7 +20,7 @@ import java.util.Map;
  * @date 2020-02-04
  */
 @Component("connect/status")
-public class ImoocConnectionStatusView extends AbstractView {
+public class SeedConnectionStatusView extends AbstractView {
 
     @Autowired
     private ObjectMapper objectMapper;

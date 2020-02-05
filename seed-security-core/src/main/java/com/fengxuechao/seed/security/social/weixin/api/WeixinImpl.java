@@ -8,6 +8,7 @@ import org.springframework.social.oauth2.AbstractOAuth2ApiBinding;
 import org.springframework.social.oauth2.TokenStrategy;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -18,10 +19,8 @@ import java.util.List;
  */
 public class WeixinImpl extends AbstractOAuth2ApiBinding implements Weixin {
 	
-	/**
-	 * 
-	 */
 	private ObjectMapper objectMapper = new ObjectMapper();
+
 	/**
 	 * 获取用户信息的url
 	 */
@@ -41,7 +40,7 @@ public class WeixinImpl extends AbstractOAuth2ApiBinding implements Weixin {
 	protected List<HttpMessageConverter<?>> getMessageConverters() {
 		List<HttpMessageConverter<?>> messageConverters = super.getMessageConverters();
 		messageConverters.remove(0);
-		messageConverters.add(new StringHttpMessageConverter(Charset.forName("UTF-8")));
+		messageConverters.add(new StringHttpMessageConverter(StandardCharsets.UTF_8));
 		return messageConverters;
 	}
 

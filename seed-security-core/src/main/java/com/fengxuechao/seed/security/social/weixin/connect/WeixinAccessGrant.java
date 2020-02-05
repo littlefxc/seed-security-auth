@@ -12,9 +12,6 @@ import org.springframework.social.oauth2.AccessGrant;
  */
 public class WeixinAccessGrant extends AccessGrant {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7243374526633186782L;
 	
 	private String openId;
