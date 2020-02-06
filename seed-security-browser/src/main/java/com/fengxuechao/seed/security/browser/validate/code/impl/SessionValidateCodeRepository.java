@@ -26,9 +26,20 @@ public class SessionValidateCodeRepository implements ValidateCodeRepository {
      */
     private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
 
+    /**
+     * 保存验证码
+     * <p>
+     * 因为 BufferedImage 没有实现 Serializable 接口，所以无法序列化，
+     * 同时也不需要序列化图片而只是给用户看的，所以在存储session时只用保存原始的 code 就行了。
+     *
+     * @param request
+     * @param code
+     * @param validateCodeType
+     */
     @Override
     public void save(ServletWebRequest request, ValidateCode code, ValidateCodeType validateCodeType) {
-        sessionStrategy.setAttribute(request, getSessionKey(request, validateCodeType), code);
+        ValidateCode validateCode = new ValidateCode(code.getCode(), code.getExpireTime());
+        sessionStrategy.setAttribute(request, getSessionKey(request, validateCodeType), validateCode);
     }
 
     /**

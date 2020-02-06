@@ -22,7 +22,7 @@ server.servlet.session.timeout=30m
 
     Spring Boot Tomcat 配置 Session 的源码：`org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory#configureSession`
     
-## 代码
+## Session 超时处理和 Session 并发控制的代码
 
 ### 抽象的session失效处理器
 
@@ -230,3 +230,8 @@ http.sessionManagement()
     .maxSessionsPreventsLogin(securityProperties.getBrowser().getSession().isMaxSessionsPreventsLogin())
     .expiredSessionStrategy(sessionInformationExpiredStrategy)
 ```
+
+## 集群 session 管理
+
+![单机session与集群session的区别.png](单机session与集群session的区别.png)
+
