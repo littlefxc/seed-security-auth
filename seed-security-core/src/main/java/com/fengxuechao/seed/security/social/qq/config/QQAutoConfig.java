@@ -39,6 +39,7 @@ public class QQAutoConfig extends SocialConfigurerAdapter {
      * 在 {@link com.fengxuechao.seed.security.social.SocialConfig} 中已有实现，此处无需再次实现。
      *
      * @param connectionFactoryLocator
+     * @return null
      */
     @Override
     public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {

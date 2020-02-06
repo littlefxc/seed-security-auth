@@ -1,6 +1,7 @@
 package com.fengxuechao.seed.security.social;
 
 import com.fengxuechao.seed.security.properties.SecurityProperties;
+import com.fengxuechao.seed.security.social.connect.jdbc.SeedJdbcUsersConnectionRepository;
 import com.fengxuechao.seed.security.social.support.SeedSpringSocialConfigurer;
 import com.fengxuechao.seed.security.social.support.SocialAuthenticationFilterPostProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
         if (encryptor == null) {
             encryptor = Encryptors.noOpText();
         }
-        JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(
+        SeedJdbcUsersConnectionRepository repository = new SeedJdbcUsersConnectionRepository(
                 dataSource, connectionFactoryLocator, encryptor);
         repository.setTablePrefix("seed_");
         if (connectionSignUp != null) {

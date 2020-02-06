@@ -36,12 +36,18 @@ public class WeixinAutoConfiguration extends SocialConfigurerAdapter {
         configurer.addConnectionFactory(createConnectionFactory());
     }
 
+    /**
+     * @return 微信连接工厂
+     */
     protected ConnectionFactory<?> createConnectionFactory() {
         WeixinProperties weixinConfig = securityProperties.getSocial().getWeixin();
         return new WeixinConnectionFactory(weixinConfig.getProviderId(), weixinConfig.getAppId(),
                 weixinConfig.getAppSecret());
     }
 
+    /**
+     * @return 绑定｜解绑结果视图
+     */
     @Bean({"connect/weixinConnect", "connect/weixinConnected"})
     @ConditionalOnMissingBean(name = "weixinConnectedView")
     public View weixinConnectedView() {

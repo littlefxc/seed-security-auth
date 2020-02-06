@@ -9,6 +9,7 @@ import org.springframework.web.servlet.view.AbstractView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,10 +26,20 @@ public class SeedConnectionStatusView extends AbstractView {
     @Autowired
     private ObjectMapper objectMapper;
 
+    /**
+     * 返回系统用户的社交账号的绑定情况。
+     * <p>
+     * 返回结果如: {"qq": false, "weixin": false}
+     *
+     * @param model    来自于 org.springframework.social.connect.web.ConnectController#connectionStatus(org.springframework.web.context.request.NativeWebRequest, org.springframework.ui.Model) 中的 Model
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     @SuppressWarnings("unchecked")
     @Override
-    protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
-                                           HttpServletResponse response) throws Exception {
+    protected void renderMergedOutputModel(
+            Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         Map<String, List<Connection<?>>> connections = (Map<String, List<Connection<?>>>) model.get("connectionMap");
 

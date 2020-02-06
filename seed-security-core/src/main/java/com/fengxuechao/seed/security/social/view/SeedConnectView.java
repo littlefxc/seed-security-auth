@@ -1,5 +1,6 @@
 package com.fengxuechao.seed.security.social.view;
 
+import org.springframework.social.connect.web.ConnectController;
 import org.springframework.web.servlet.view.AbstractView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,12 +12,13 @@ import java.util.Map;
  *
  * @author fengxuechao
  * @date 2020-02-04
+ * @see ConnectController#connectedView(java.lang.String)
  */
 public class SeedConnectView extends AbstractView {
 
     @Override
-    protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
-                                           HttpServletResponse response) throws Exception {
+    protected void renderMergedOutputModel(
+            Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         response.setContentType("text/html;charset=UTF-8");
         if (model.get("connections") == null) {

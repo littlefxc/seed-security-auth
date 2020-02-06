@@ -62,6 +62,13 @@ public class SocialWebAutoConfiguration {
             this.signInInterceptors = signInInterceptorsProvider.getIfAvailable();
         }
 
+        /**
+         * 社交登录账号绑定解绑操作控制器
+         *
+         * @param factoryLocator
+         * @param repository
+         * @return
+         */
         @Bean
         @ConditionalOnMissingBean(ConnectController.class)
         public ConnectController connectController(
