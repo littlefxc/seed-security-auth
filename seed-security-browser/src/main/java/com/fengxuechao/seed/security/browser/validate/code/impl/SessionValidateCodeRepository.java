@@ -1,4 +1,4 @@
-package com.fengxuechao.seed.security.browser;
+package com.fengxuechao.seed.security.browser.validate.code.impl;
 
 import com.fengxuechao.seed.security.validate.code.ValidateCode;
 import com.fengxuechao.seed.security.validate.code.ValidateCodeRepository;
