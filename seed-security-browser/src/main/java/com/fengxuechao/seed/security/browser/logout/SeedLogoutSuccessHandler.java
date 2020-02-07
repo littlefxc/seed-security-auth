@@ -2,6 +2,7 @@ package com.fengxuechao.seed.security.browser.logout;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fengxuechao.seed.security.support.ResultBean;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +21,8 @@ import java.io.IOException;
  * @author fengxuechao
  * @date 2019-02-06
  */
+@Slf4j
 public class SeedLogoutSuccessHandler implements LogoutSuccessHandler {
-
-	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	public SeedLogoutSuccessHandler(String signOutSuccessUrl) {
 		this.signOutSuccessUrl = signOutSuccessUrl;
@@ -36,11 +36,11 @@ public class SeedLogoutSuccessHandler implements LogoutSuccessHandler {
 	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
 
-		logger.info("退出成功");
+		log.info("退出成功");
 
 		if (StringUtils.isBlank(signOutSuccessUrl)) {
 			response.setContentType("application/json;charset=UTF-8");
-			response.getWriter().write(objectMapper.writeValueAsString(new ResultBean(200, "退出成功")));
+			response.getWriter().write(objectMapper.writeValueAsString(new ResultBean<>(200, "退出成功")));
 		} else {
 			response.sendRedirect(signOutSuccessUrl);
 		}

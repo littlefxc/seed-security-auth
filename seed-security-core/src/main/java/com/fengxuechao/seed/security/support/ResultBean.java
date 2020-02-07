@@ -27,7 +27,7 @@ public class ResultBean<T> {
 		this.data = data;
 	}
 
-	public static ResultBean ok(Object data) {
+	public static ResultBean<Object> ok(Object data) {
 		return new ResultBean<>(200, "success", data);
 	}
 }

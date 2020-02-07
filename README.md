@@ -534,6 +534,10 @@ public Object userProfile(Authentication authentication) {
 
 [使用SpringSocial开发第三方登录.md](docs/使用SpringSocial开发第三方登录.md)
 
+## 退出处理
+
+[退出处理](docs/退出处理.md)
+
 
 
 

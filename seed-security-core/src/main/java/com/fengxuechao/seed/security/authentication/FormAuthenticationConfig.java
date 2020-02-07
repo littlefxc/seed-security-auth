@@ -28,8 +28,7 @@ public class FormAuthenticationConfig {
 
     public void configure(HttpSecurity http) throws Exception {
         http.formLogin()
-//                .loginPage(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)
-                .loginPage(SecurityConstants.DEFAULT_SIGN_IN_PAGE_URL)
+                .loginPage(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)
                 .loginProcessingUrl(SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM)
                 .successHandler(seedAuthenticationSuccessHandler)
                 .failureHandler(seedAuthenticationFailureHandler);
