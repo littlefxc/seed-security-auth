@@ -538,6 +538,10 @@ public Object userProfile(Authentication authentication) {
 
 [退出处理](docs/退出处理.md)
 
+## Spring Security OAuth 开发 APP 认证框架
+
+[Spring Security OAuth 开发 APP 认证框架](docs/SpringSecurityOAuth开发APP认证框架.md)
+
 
 
 
