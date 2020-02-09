@@ -3,20 +3,16 @@ package com.fengxuechao.seed.security.browser;
 import com.fengxuechao.seed.security.authentication.FormAuthenticationConfig;
 import com.fengxuechao.seed.security.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import com.fengxuechao.seed.security.authorize.AuthorizeConfigManager;
-import com.fengxuechao.seed.security.properties.SecurityConstants;
 import com.fengxuechao.seed.security.properties.SecurityProperties;
 import com.fengxuechao.seed.security.validate.code.ValidateCodeSecurityConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
@@ -65,21 +61,11 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     private LogoutSuccessHandler logoutSuccessHandler;
 
     @Autowired
-    @Qualifier("myUserDetailsService")
     private UserDetailsService userDetailsService;
 
     @Autowired
     private PersistentTokenRepository persistentTokenRepository;
 
-    /**
-     * 密码保护
-     *
-     * @return
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

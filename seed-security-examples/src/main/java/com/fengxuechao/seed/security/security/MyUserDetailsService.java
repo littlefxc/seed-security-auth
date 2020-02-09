@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @date 2019-09-10
  */
 @Slf4j
-@Component("myUserDetailsService")
+@Component("userDetailsService")
 public class MyUserDetailsService implements UserDetailsService, SocialUserDetailsService {
 
     @Autowired
@@ -37,7 +37,7 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
         log.info("表单登录用户名:{}", username);
         String encodePassword = passwordEncoder.encode("123456");
         log.debug("表单登录密码:{}", encodePassword);
-        return new User(username, encodePassword, AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+        return buildUser(username, encodePassword);
     }
 
     /**
@@ -52,6 +52,11 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
         log.info("社交登录用户名:{}", userId);
         String encodePassword = passwordEncoder.encode("123456");
         log.debug("社交登录密码:{}", encodePassword);
-        return new SocialUser(userId, encodePassword, AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+        return buildUser(userId, encodePassword);
+    }
+
+    private SocialUser buildUser(String userId, String encodePassword) {
+        return new SocialUser(userId, encodePassword,
+                AuthorityUtils.commaSeparatedStringToAuthorityList("admin, ROLE_USER"));
     }
 }

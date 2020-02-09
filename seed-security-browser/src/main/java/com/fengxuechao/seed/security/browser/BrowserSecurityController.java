@@ -2,7 +2,7 @@ package com.fengxuechao.seed.security.browser;
 
 import com.fengxuechao.seed.security.properties.SecurityConstants;
 import com.fengxuechao.seed.security.properties.SecurityProperties;
-import com.fengxuechao.seed.security.social.AbstractSocialController;
+import com.fengxuechao.seed.security.social.SocialController;
 import com.fengxuechao.seed.security.social.support.SocialUserInfo;
 import com.fengxuechao.seed.security.support.ResultBean;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +34,7 @@ import java.io.IOException;
  */
 @Slf4j
 @RestController
-public class BrowserSecurityController extends AbstractSocialController {
+public class BrowserSecurityController extends SocialController {
 
     private RequestCache requestCache = new HttpSessionRequestCache();
 

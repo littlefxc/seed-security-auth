@@ -15,12 +15,6 @@
         <spring-cloud.version>Greenwich.SR5</spring-cloud.version>
     </properties>
 
-<!--    <parent>-->
-<!--        <artifactId>spring-boot-parent</artifactId>-->
-<!--        <groupId>org.springframework.boot</groupId>-->
-<!--        <version>2.2.0.RELEASE</version>-->
-<!--    </parent>-->
-
     <modules>
         <module>seed-security-core</module>
         <module>seed-security-app</module>

@@ -12,9 +12,14 @@
     <artifactId>seed-security-examples</artifactId>
 
     <dependencies>
-        <dependency>
+        <!--<dependency>
             <groupId>com.fengxuechao.seed</groupId>
             <artifactId>seed-security-browser</artifactId>
+            <version>${seed.security.version}</version>
+        </dependency>-->
+        <dependency>
+            <groupId>com.fengxuechao.seed</groupId>
+            <artifactId>seed-security-app</artifactId>
             <version>${seed.security.version}</version>
         </dependency>
         <dependency>

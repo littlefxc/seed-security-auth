@@ -1,7 +1,6 @@
 package com.fengxuechao.seed.security.authentication.mobile;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -32,13 +31,12 @@ public class SmsCodeAuthenticationSecurityConfig extends SecurityConfigurerAdapt
     private AuthenticationFailureHandler seedAuthenticationFailureHandler;
 
     @Autowired
-    @Qualifier("myUserDetailsService")
     private UserDetailsService userDetailsService;
 
-    @Autowired
+    @Autowired(required = false)
     private PersistentTokenRepository persistentTokenRepository;
 
-	@Override
+    @Override
     public void configure(HttpSecurity http) throws Exception {
 
         SmsCodeAuthenticationFilter smsCodeAuthenticationFilter = new SmsCodeAuthenticationFilter();
@@ -48,7 +46,6 @@ public class SmsCodeAuthenticationSecurityConfig extends SecurityConfigurerAdapt
         String key = UUID.randomUUID().toString();
         smsCodeAuthenticationFilter.setRememberMeServices(new PersistentTokenBasedRememberMeServices(
                 key, userDetailsService, persistentTokenRepository));
-
         SmsCodeAuthenticationProvider smsCodeAuthenticationProvider = new SmsCodeAuthenticationProvider();
         smsCodeAuthenticationProvider.setUserDetailsService(userDetailsService);
 

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 默认的退出成功处理器，如果设置了imooc.security.browser.signOutUrl，则跳到配置的地址上，
+ * 默认的退出成功处理器，如果设置了 seed.security.browser.signOutUrl，则跳到配置的地址上，
  * 如果没配置，则返回json格式的响应。
  *
  * @author fengxuechao

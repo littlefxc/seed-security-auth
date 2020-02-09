@@ -438,7 +438,7 @@ public class QQProperties {
  * @date 2020-02-04
  */
 @Configuration
-@ConditionalOnProperty(prefix = "imooc.security.social.qq", name = "app-id")
+@ConditionalOnProperty(prefix = "seed.security.social.qq", name = "app-id")
 public class QQAutoConfig extends SocialConfigurerAdapter {
 
     @Autowired

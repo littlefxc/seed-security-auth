@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.fengxuechao.seed.security.properties;
 
 import lombok.Data;
@@ -32,7 +29,7 @@ public class SecurityProperties {
     /**
      * OAuth2认证服务器配置
      */
-//    private OAuth2Properties oauth2 = new OAuth2Properties();
+    private OAuth2Properties oauth2 = new OAuth2Properties();
 
     @ConfigurationProperties(prefix = "seed.security.browser")
     public BrowserProperties getBrowser() {
@@ -49,9 +46,9 @@ public class SecurityProperties {
         return social;
     }
 
-//    @ConfigurationProperties(prefix = "seed.security.oauth2")
-//    public OAuth2Properties getOauth2() {
-//        return oauth2;
-//    }
+    @ConfigurationProperties(prefix = "seed.security.oauth2")
+    public OAuth2Properties getOauth2() {
+        return oauth2;
+    }
 }
 
