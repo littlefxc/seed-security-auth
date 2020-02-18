@@ -4,7 +4,6 @@ import com.fengxuechao.seed.security.properties.OAuth2ClientProperties;
 import com.fengxuechao.seed.security.properties.SecurityProperties;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;

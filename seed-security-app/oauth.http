@@ -1,22 +1,10 @@
-GET http://localhost:8080/oauth/authorize?response_type=code&client_id=seed&redirect_uri=https//www.baidu.com&scope=all
-
-###
-
-POST http://localhost:8080/authentication/form?scope=all&grant_type=custom&username=user&password=123456
-Authorization: Basic c2VlZDpzZWVkc2VjcmV0
-Content-Type: application/x-www-form-urlencoded
-
-username=user
-password=123456
-###
-
 GET http://localhost:8080/code/sms?mobile=13012345678
 Content-Type: application/x-www-form-urlencoded
 deviceId: 123
 
 ###
 
-POST http://localhost:8080/authentication/mobile?mobile=13012345678&smsCode=199089
+POST http://localhost:8080/authentication/mobile?mobile=13012345678&smsCode=176162
 Authorization: Basic c2VlZDpzZWVkc2VjcmV0
 Content-Type: application/x-www-form-urlencoded
 deviceId: 123

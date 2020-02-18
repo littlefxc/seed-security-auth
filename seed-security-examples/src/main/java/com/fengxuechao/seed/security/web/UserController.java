@@ -1,11 +1,15 @@
 package com.fengxuechao.seed.security.web;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fengxuechao.seed.security.app.social.AppSingUpUtils;
 import com.fengxuechao.seed.security.dto.User;
 import com.fengxuechao.seed.security.dto.UserQueryCondition;
+import com.fengxuechao.seed.security.properties.SecurityProperties;
+import io.jsonwebtoken.*;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.ServletWebRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +43,12 @@ public class UserController {
 
     @Autowired
     private ProviderSignInUtils providerSignInUtils;
+
+//	@Autowired
+//	private AppSingUpUtils appSingUpUtils;
+
+//	@Autowired
+//	private SecurityProperties securityProperties;
 
     @PostMapping("/regist")
     public void regist(User user, HttpServletRequest request) {
@@ -115,7 +126,18 @@ public class UserController {
     }
 
     @GetMapping("profile")
-    public Object userProfile(@AuthenticationPrincipal UserDetails userDetails) {
-        return userDetails;
+    public Object userProfile(Authentication user, HttpServletRequest request) throws ExpiredJwtException,
+            UnsupportedJwtException, MalformedJwtException, SignatureException, IllegalArgumentException,
+            UnsupportedEncodingException {
+
+		/*String token = StringUtils.substringAfter(request.getHeader("Authorization"), "bearer ");
+
+		Claims claims = Jwts.parser().setSigningKey(securityProperties.getOauth2().getJwtSigningKey().getBytes("UTF-8"))
+					.parseClaimsJws(token).getBody();
+
+		String company = (String) claims.get("company");
+
+		log.info("{}", company);*/
+        return user;
     }
 }
