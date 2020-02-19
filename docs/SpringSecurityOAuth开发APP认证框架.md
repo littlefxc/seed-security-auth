@@ -40,5 +40,7 @@ APP 架构下 Cookie + Session 的缺点：
 
 [令牌配置](令牌配置.md)
 
+[基于JWT实现SSO](基于JWT实现SSO.md)
+
 
 
