@@ -4,13 +4,18 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.security.oauth2.provider.endpoint.WhitelabelApprovalEndpoint;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-@RestController
-@SessionAttributes("authorizationRequest")
+/**
+ * TODO
+ * @see WhitelabelApprovalEndpoint
+ */
+//@RestController
+//@SessionAttributes("authorizationRequest")
 public class SsoApprovalEndpoint {
 	
 	@RequestMapping("/oauth/confirm_access")
