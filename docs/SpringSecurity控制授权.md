@@ -38,5 +38,7 @@ Spring Security 默认使用 AffirmativeBased 。
 
 ![SpringSecurity控制授权_自定义授权代码架构封装.png](SpringSecurity控制授权_自定义授权代码架构封装.png)
 
+## 基于数据库 Rbac 数据模型控制权限
 
+![SpringSecurity控制授权_通用数据模型.png](SpringSecurity控制授权_通用数据模型.png)
 

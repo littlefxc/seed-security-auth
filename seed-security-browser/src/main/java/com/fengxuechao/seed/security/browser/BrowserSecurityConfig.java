@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -66,7 +68,6 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PersistentTokenRepository persistentTokenRepository;
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         formAuthenticationConfig.configure(http);
@@ -120,5 +121,17 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
         // 系统启动时创建表
         // repository.setCreateTableOnStartup(true);
         return repository;
+    }
+
+    /**
+     * Spring Boot 2.0 升级带来的问题，需要显式注入 AuthenticationManager
+     *
+     * @return
+     * @throws Exception
+     */
+    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 }

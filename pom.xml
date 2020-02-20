@@ -20,6 +20,7 @@
         <module>seed-security-app</module>
         <module>seed-security-browser</module>
         <module>seed-security-examples</module>
+        <module>seed-security-authorize</module>
     </modules>
 
     <build>
