@@ -542,6 +542,10 @@ public Object userProfile(Authentication authentication) {
 
 [Spring Security OAuth 开发 APP 认证框架](docs/SpringSecurityOAuth开发APP认证框架.md)
 
+## Spring Security 控制授权
+
+[SpringSecurity控制授权](docs/SpringSecurity控制授权.md)
+
 
 
 
