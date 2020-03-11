@@ -13,6 +13,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 消息队列监听器
+ *
  * @author fengxuechao
  * @date 2019-09-02
  */
@@ -20,6 +22,9 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class QueueListener implements ApplicationListener<ContextRefreshedEvent> {
 
+    /**
+     * 模拟消息队列，实际可用MQ替换
+     */
     @Autowired
     private MockQueue mockQueue;
 

@@ -1,16 +1,17 @@
 package com.fengxuechao.seed.security.web.async;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
+ * 模拟消息队列
+ *
  * @author fengxuechao
  * @date 2019-09-02
  */
@@ -33,7 +34,7 @@ public class MockQueue {
         ExecutorService singleThreadPool = new ThreadPoolExecutor(1, 1, 0L,
                 TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(1024),
                 new ThreadPoolExecutor.AbortPolicy());
-        singleThreadPool.execute(()-> {
+        singleThreadPool.execute(() -> {
             log.info("接到下单请求, " + placeOrder);
             try {
                 Thread.sleep(1000);
