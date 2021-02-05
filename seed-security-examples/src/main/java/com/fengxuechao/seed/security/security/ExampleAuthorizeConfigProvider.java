@@ -15,6 +15,7 @@ public class ExampleAuthorizeConfigProvider implements AuthorizeConfigProvider {
 	@Override
 	public boolean config(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry config) {
 		//demo项目授权配置
+		config.antMatchers("/order/**", "/file/**").permitAll();
 		return false;
 	}
 

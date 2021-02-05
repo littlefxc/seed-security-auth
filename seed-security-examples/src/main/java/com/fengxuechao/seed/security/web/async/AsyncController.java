@@ -58,7 +58,7 @@ public class AsyncController {
             @Override
             public String call() throws Exception {
                 log.info("副线程开始");
-                Thread.sleep(1000);
+                Thread.sleep(100);
                 log.info("副线程返回");
                 return "success";
             }

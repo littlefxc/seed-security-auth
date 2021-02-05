@@ -21,7 +21,7 @@ import java.io.*;
 @RequestMapping("file")
 public class FileController {
 
-    private String folder = "/Users/fengxuechao/IdeaProjects/seed-security-auth/seed-security-examples/src/main/resources";
+    private String folder = "/Users/fengxuechao/WorkSpace/IdeaProjects/seed-security-auth";
 
     /**
      * 文件上传
